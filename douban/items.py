@@ -14,4 +14,3 @@ class DoubanItem(scrapy.Item):
     user = scrapy.Field()
     score = scrapy.Field()
     comment = scrapy.Field()
-

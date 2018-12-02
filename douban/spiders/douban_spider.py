@@ -61,14 +61,15 @@ class DoubanSpider(scrapy.Spider):
 			score_flag = (person_comment.xpath('./div[2]/h3/span[2]/span[2]').extract_first()).split("title")[0]
 			score_list = (re.findall('\d+', score_flag))
 			if len(score_list) != 0:
-				score = score_list[0]
+				score = int(score_list[0])
 			else:
-				score = str(0)
+				score = 0
 			item["user"] = username
 			item["score"] = score
 			item["comment"] = comment
 			yield item
 
 		next_url = response.xpath('//*[@id="paginator"]/a[last()]/@href').extract_first()
-		next_page_url = response.urljoin(next_url)
-		yield Request(url=next_page_url, callback=self.parse, meta={'cookiejar':response.meta['cookiejar']})
+		if "limit=-20" not in next_url:
+			next_page_url = response.urljoin(next_url)
+			yield Request(url=next_page_url, callback=self.parse, meta={'cookiejar':response.meta['cookiejar']})

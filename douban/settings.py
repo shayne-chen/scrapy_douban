@@ -35,6 +35,12 @@ DOWNLOAD_DELAY = 2
 # Disable cookies (enabled by default)
 COOKIES_ENABLED = True
 
+#MongoDB
+MONGODB_HOST = '127.0.0.1'
+MONGODB_PORT = 27017
+MONGODB_DBNAME = 'douban'
+MONGODB_TABLE = 'comments'
+
 # Disable Telnet Console (enabled by default)
 #TELNETCONSOLE_ENABLED = False
 
@@ -64,9 +70,9 @@ COOKIES_ENABLED = True
 
 # Configure item pipelines
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    'douban.pipelines.DoubanPipeline': 300,
-#}
+ITEM_PIPELINES = {
+   'douban.pipelines.DoubanPipeline': 300,
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://doc.scrapy.org/en/latest/topics/autothrottle.html
